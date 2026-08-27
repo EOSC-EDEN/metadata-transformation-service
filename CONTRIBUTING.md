@@ -2,7 +2,7 @@
 
 ## Branch Policy
 
-The `master` branch is the default branch
+The `main` branch is the default branch
 
 ### How to contribute
 
