@@ -1,0 +1,8 @@
+{
+  "identifier": { "identifier":"10.1234\/mts-example", "identifierType":"DOI" },
+  "creators": [ { "creatorName":"Wijngaarden, Marcella" } ],
+  "titles": [ { "title":"Example research dataset", "lang":"en" } ],
+  "publisher": "Example Research Institute",
+  "publicationYear": "2026",
+  "resourceType": { "resourceType":"Dataset", "resourceTypeGeneral":"Dataset" }
+}

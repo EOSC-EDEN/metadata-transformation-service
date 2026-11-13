@@ -1,0 +1,269 @@
+openapi: 3.0.3
+info:
+  title: Metadata Transformation Service
+  version: 0.1.0
+paths:
+  /api/v1/transform:
+    post:
+      summary: Transform one UTF-8 metadata record
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - metadata
+              - source_schema
+              - target_schema
+              additionalProperties: false
+              properties:
+                metadata:
+                  type: string
+                  minLength: 1
+                source_schema:
+                  type: string
+                  minLength: 1
+                target_schema:
+                  type: string
+                  minLength: 1
+                input_format:
+                  type: string
+                  default: xml
+                  minLength: 1
+                  description: Configured format ID; discover mappings via /crosswalks
+                    and direct format changes via /converters.
+                output_format:
+                  type: string
+                  default: xml
+                  minLength: 1
+                  description: Configured format ID; discover mappings via /crosswalks
+                    and direct format changes via /converters.
+                crosswalk_id:
+                  type: string
+                  minLength: 1
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+              - file
+              - source_schema
+              - target_schema
+              additionalProperties: false
+              properties:
+                source_schema:
+                  type: string
+                  minLength: 1
+                target_schema:
+                  type: string
+                  minLength: 1
+                input_format:
+                  type: string
+                  default: xml
+                  minLength: 1
+                  description: Configured format ID; discover mappings via /crosswalks
+                    and direct format changes via /converters.
+                output_format:
+                  type: string
+                  default: xml
+                  minLength: 1
+                  description: Configured format ID; discover mappings via /crosswalks
+                    and direct format changes via /converters.
+                crosswalk_id:
+                  type: string
+                  minLength: 1
+                file:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Validated transformed metadata and report
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Result'
+        '400':
+          description: Invalid or unsupported transformation request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '413':
+          description: Configured size limit exceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '415':
+          description: Unsupported request content type
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '422':
+          description: Source validation, transformation, or target validation failed
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+        '500':
+          description: Internal service error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /health:
+    get:
+      summary: Health
+      responses:
+        '200':
+          description: Health
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/schemas:
+    get:
+      summary: Supported schemas and formats
+      responses:
+        '200':
+          description: Supported schemas and formats
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/crosswalks:
+    get:
+      summary: Available crosswalks
+      responses:
+        '200':
+          description: Available crosswalks
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  crosswalks:
+                    type: array
+                    items:
+                      type: object
+                      required:
+                      - id
+                      - version
+                      - source_schema
+                      - target_schema
+                      - notes
+                      - supported_input_formats
+                      - supported_output_formats
+                      properties:
+                        id:
+                          type: string
+                        version:
+                          type: string
+                        source_schema:
+                          type: string
+                        target_schema:
+                          type: string
+                        notes:
+                          type: array
+                          items:
+                            type: string
+                        supported_input_formats:
+                          type: array
+                          items:
+                            type: string
+                        supported_output_formats:
+                          type: array
+                          items:
+                            type: string
+  /api/v1/capabilities:
+    get:
+      summary: Limits and supported input/output formats
+      responses:
+        '200':
+          description: Limits and supported input/output formats
+          content:
+            application/json:
+              schema:
+                type: object
+  /api/v1/converters:
+    get:
+      summary: List direct same-schema serialization converters
+      responses:
+        '200':
+          description: Converter definitions with schema, formats and provenance
+          content:
+            application/json:
+              schema:
+                type: object
+components:
+  schemas:
+    Result:
+      type: object
+      required:
+      - metadata
+      - media_type
+      - report
+      properties:
+        metadata:
+          type: string
+        media_type:
+          type: string
+          description: Media type registered for the output format.
+        report:
+          type: object
+          required:
+          - status
+          - crosswalk
+          - steps
+          - warnings
+          - schema_transformation
+          - serialization_transformation
+          - conversions
+          properties:
+            status:
+              enum:
+              - success
+              - success_with_warnings
+            crosswalk:
+              type: object
+              nullable: true
+              description: Selected XML-to-XML mapping provenance and descriptive
+                notes, or null.
+            steps:
+              type: array
+              items:
+                type: object
+            warnings:
+              type: array
+              items:
+                type: string
+            schema_transformation:
+              type: boolean
+            serialization_transformation:
+              type: boolean
+              description: True if any converter ran, including internal conversions
+                for JSON-to-JSON requests.
+            conversions:
+              type: array
+              items:
+                type: object
+    Error:
+      type: object
+      required:
+      - error
+      - report
+      properties:
+        error:
+          type: object
+          required:
+          - code
+          - message
+          properties:
+            code: &id001
+              type: string
+              minLength: 1
+            message: *id001
+            stage: *id001
+        report:
+          type: object

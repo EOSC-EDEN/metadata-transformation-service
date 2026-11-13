@@ -1,0 +1,50 @@
+[
+  {
+    "source": "datacite-4.1",
+    "target": "oai-dc",
+    "input_format": "xml",
+    "output_format": "json",
+    "input": "datacite.xml",
+    "output": "datacite-to-dc-xml-to-json.json"
+  },
+  {
+    "source": "datacite-4.1",
+    "target": "oai-dc",
+    "input_format": "json",
+    "output_format": "xml",
+    "input": "datacite.json",
+    "output": "datacite-to-dc-json-to-xml.xml"
+  },
+  {
+    "source": "datacite-4.1",
+    "target": "oai-dc",
+    "input_format": "json",
+    "output_format": "json",
+    "input": "datacite.json",
+    "output": "datacite-to-dc-json-to-json.json"
+  },
+  {
+    "source": "oai-dc",
+    "target": "datacite-4.1",
+    "input_format": "xml",
+    "output_format": "json",
+    "input": "dublincore.xml",
+    "output": "dc-to-datacite-xml-to-json.json"
+  },
+  {
+    "source": "oai-dc",
+    "target": "datacite-4.1",
+    "input_format": "json",
+    "output_format": "xml",
+    "input": "dublincore.json",
+    "output": "dc-to-datacite-json-to-xml.xml"
+  },
+  {
+    "source": "oai-dc",
+    "target": "datacite-4.1",
+    "input_format": "json",
+    "output_format": "json",
+    "input": "dublincore.json",
+    "output": "dc-to-datacite-json-to-json.json"
+  }
+]

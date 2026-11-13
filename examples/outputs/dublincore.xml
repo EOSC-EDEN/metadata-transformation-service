@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<oai_dc:dc xmlns:oai_dc="http://www.openarchives.org/OAI/2.0/oai_dc/">
+   <dc:identifier xmlns:dc="http://purl.org/dc/elements/1.1/">10.1234/mts-example</dc:identifier>
+   <dc:creator xmlns:dc="http://purl.org/dc/elements/1.1/">Wijngaarden, Marcella</dc:creator>
+   <dc:title xmlns:dc="http://purl.org/dc/elements/1.1/" xml:lang="en">Example research dataset</dc:title>
+   <dc:publisher xmlns:dc="http://purl.org/dc/elements/1.1/">Example Research Institute</dc:publisher>
+   <dc:date xmlns:dc="http://purl.org/dc/elements/1.1/">2026</dc:date>
+   <dc:type xmlns:dc="http://purl.org/dc/elements/1.1/">Dataset</dc:type>
+</oai_dc:dc>

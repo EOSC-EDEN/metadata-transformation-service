@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "metadata-transformation-service"
+version = "0.1.0"
+description = "A small metadata transformation core and Flask API"
+requires-python = ">=3.12"
+dependencies = ["Flask>=3.1,<4", "saxonche>=12.9,<14", "lxml>=5.3,<7", "jsonschema>=4.23,<5"]
+[project.optional-dependencies]
+server = ["gunicorn>=23,<24"]
+dev = ["pytest>=8,<10", "ruff>=0.9,<1", "build>=1,<2", "openapi-spec-validator>=0.7,<1"]
+[tool.setuptools.packages.find]
+where = ["src"]
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP"]

@@ -1,0 +1,80 @@
+{
+  "schemas": [
+    {
+      "id": "datacite-4.1",
+      "version": "4.1",
+      "formats": {
+        "xml": "schemas/meta_kernel-4.1_metadata.xsd",
+        "json": "schemas/datacite-minimal.json"
+      }
+    },
+    {
+      "id": "oai-dc",
+      "version": "2.0",
+      "formats": {
+        "xml": "schemas/oai_dc.xsd",
+        "json": "schemas/dublincore.json"
+      }
+    }
+  ],
+  "crosswalks": [
+    {
+      "id": "datacite-to-dc",
+      "version": "1.0.0",
+      "source_schema": "datacite-4.1",
+      "target_schema": "oai-dc",
+      "path": "crosswalks/datacite-to-dc.xsl",
+      "notes": [
+        "Example maps identifier, creators, titles, publisher, publication year and general resource type only; other fields and qualifiers are omitted."
+      ]
+    },
+    {
+      "id": "dc-to-datacite",
+      "version": "1.0.0",
+      "source_schema": "oai-dc",
+      "target_schema": "datacite-4.1",
+      "path": "crosswalks/dc-to-datacite.xsl",
+      "notes": [
+        "Example maps identifier, creators, titles, publisher, date and type only. Identifier must be a DOI, date a year, and type a DataCite general resource type."
+      ]
+    }
+  ],
+  "converters": [
+    {
+      "id": "datacite-xml-to-json-v1",
+      "version": "1.0.0",
+      "schema": "datacite-4.1",
+      "input_format": "xml",
+      "output_format": "json",
+      "path": "converters/datacite-xml-to-json.xsl",
+      "notes": []
+    },
+    {
+      "id": "datacite-json-to-xml-v1",
+      "version": "1.0.0",
+      "schema": "datacite-4.1",
+      "input_format": "json",
+      "output_format": "xml",
+      "path": "converters/datacite-json-to-xml.xsl",
+      "notes": []
+    },
+    {
+      "id": "dc-xml-to-json-v1",
+      "version": "1.0.0",
+      "schema": "oai-dc",
+      "input_format": "xml",
+      "output_format": "json",
+      "path": "converters/dc-xml-to-json.xsl",
+      "notes": []
+    },
+    {
+      "id": "dc-json-to-xml-v1",
+      "version": "1.0.0",
+      "schema": "oai-dc",
+      "input_format": "json",
+      "output_format": "xml",
+      "path": "converters/dc-json-to-xml.xsl",
+      "notes": []
+    }
+  ]
+}

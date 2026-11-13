@@ -1,0 +1,111 @@
+{
+  "type": "object",
+  "properties": {
+    "identifier": {
+      "type": "object",
+      "properties": {
+        "identifier": {
+          "type": "string",
+          "minLength": 1
+        },
+        "identifierType": {
+          "const": "DOI"
+        }
+      },
+      "required": [
+        "identifier",
+        "identifierType"
+      ],
+      "additionalProperties": false
+    },
+    "creators": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "creatorName": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "creatorName"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "titles": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string",
+            "minLength": 1
+          },
+          "lang": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "title"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "publisher": {
+      "type": "string",
+      "minLength": 1
+    },
+    "publicationYear": {
+      "type": "string",
+      "pattern": "^[0-9]{4}$"
+    },
+    "resourceType": {
+      "type": "object",
+      "properties": {
+        "resourceType": {
+          "type": "string"
+        },
+        "resourceTypeGeneral": {
+          "enum": [
+            "Audiovisual",
+            "Collection",
+            "DataPaper",
+            "Dataset",
+            "Event",
+            "Image",
+            "InteractiveResource",
+            "Model",
+            "PhysicalObject",
+            "Service",
+            "Software",
+            "Sound",
+            "Text",
+            "Workflow",
+            "Other"
+          ]
+        }
+      },
+      "required": [
+        "resourceType",
+        "resourceTypeGeneral"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "required": [
+    "identifier",
+    "creators",
+    "titles",
+    "publisher",
+    "publicationYear",
+    "resourceType"
+  ],
+  "additionalProperties": false,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MTS minimal DataCite 4.1 JSON profile (Invenio-shaped)"
+}

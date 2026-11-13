@@ -1,0 +1,8 @@
+<resource xmlns="http://datacite.org/schema/kernel-4">
+ <identifier identifierType="DOI">10.1234/mts-example</identifier>
+ <creators><creator><creatorName>Wijngaarden, Marcella</creatorName></creator></creators>
+ <titles><title xml:lang="en">Example research dataset</title></titles>
+ <publisher>Example Research Institute</publisher>
+ <publicationYear>2026</publicationYear>
+ <resourceType resourceTypeGeneral="Dataset">Dataset</resourceType>
+</resource>
