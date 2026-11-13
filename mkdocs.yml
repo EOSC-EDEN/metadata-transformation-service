@@ -1,0 +1,39 @@
+
+site_name: Metadata Transformation Service
+site_description: Documentation of the EOSC EDEN Metadata Transformation Service (MTS).
+
+site_url: https://eosc-eden.github.io/metadata-transformation-service/
+repo_url: https://github.com/EOSC-EDEN/metadata-transformation-service
+
+docs_dir: docs
+
+plugins:
+  - search
+
+theme:
+  name: material
+  features:
+    - navigation.sections
+    - navigation.top
+    - content.code.copy
+
+markdown_extensions:
+  - admonition
+  - tables
+  - footnotes
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
+
+nav:
+  - Home: index.md
+  - API demos: api-demos.md
+  - Extensions: extensions.md
+  - Reference:
+      - REST API: reference/rest-api.md
+  - Specification: specification.md
