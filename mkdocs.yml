@@ -7,6 +7,11 @@ repo_url: https://github.com/EOSC-EDEN/metadata-transformation-service
 
 docs_dir: docs
 
+exclude_docs: |
+  casts/
+  requirements.txt
+  Dockerfile
+
 plugins:
   - search
 
@@ -29,6 +34,14 @@ markdown_extensions:
         - name: mermaid
           class: mermaid
           format: !!python/name:pymdownx.superfences.fence_code_format
+
+validation:
+  nav:
+    omitted_files: warn
+  links:
+    not_found: warn
+    anchors: warn
+
 
 nav:
   - Home: index.md
