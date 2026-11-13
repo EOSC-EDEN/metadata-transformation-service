@@ -17,13 +17,17 @@ Transformations may include:
 
 ## Documentation
 
+An MkDocs documentation site is available; its Markdown sources are in [docs/](docs/).
+
 * [Metadata Transformation Service specification](docs/specification.md)
 * [Contributing guidelines](CONTRIBUTING.md)
 * [License](LICENSE)
 
+A [terminal recording](https://asciinema.org/a/U8jpOHfFFKAGphsN) shows the current API capabilities including metadata transformations.
+
 ## Run with Docker Compose
 
-From the extracted project directory:
+From the project directory:
 
 ```bash
 docker compose up --build -d
